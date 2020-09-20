@@ -1,0 +1,16 @@
+.custom_nav{
+    border-bottom: 2px solid #000000;
+}
+#thing {
+    position: relative;
+    left: 50px;
+    top: 50px;
+    transition: left .5s ease-in, top .5s ease-in;
+}
+
+.play_pad{
+    height: 600px; 
+    background-color: #dfdddd;
+    border-radius: 2%;
+    border: 2px solid rgb(92, 92, 92);
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        <header class="blog-header py-3 custom_nav">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+
+                <div class="col-10 text-center">
+                    <button class="btn btn-secondary" id="btnStart"> Play Recording </button>
+                    <button class="btn btn-secondary" id="btnStop"> Stop Playing </button>
+                    <button class="btn btn-secondary" id="btnRecord"> Record Movement </button>
+                    <button class="btn btn-secondary" id="btnReset"> Reset </button>
+                </div>
+                <div class="col-2 d-flex justify-content-end align-items-center">
+                    <a class="btn btn-sm btn-outline-secondary" class="btn" id="btnFollow">Follow Mouse</a>
+                </div>
+            </div> 
+        </header>
+    </div>
+
+    <div class="container">
+        <div id="contentContainer" class="play_pad">
+             <img id="thing" src="https://www.kirupa.com/images/smiley_red.png">
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+
+</body>
+
+</html>
