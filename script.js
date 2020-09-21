@@ -1,3 +1,5 @@
+const Http = new XMLHttpRequest();
+const url = 'http://localhost:3000';
 
 let movementTrack = [];
 
@@ -15,7 +17,7 @@ let btnFollow = document.querySelector("#btnFollow");
 
 container.addEventListener("mousemove", getClickPosition, false);
 btnRecord.addEventListener("click", startRecording);
-btnPlay.addEventListener("click", playAction);
+btnPlay.addEventListener("click", getMouseMoment);
 btnReset.addEventListener("click", reset);
 btnStop.addEventListener("click", stopRecording);
 btnFollow.addEventListener("click", toggleFollow);
@@ -26,26 +28,66 @@ function toggleFollow() {
 
 function stopRecording() {
     recording = false;
+    $.ajax({
+        url: url + "/moments",
+        dataType: 'JSON',
+        type: 'POST',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(movementTrack),
+        success: function (result) {
+            console.log(result);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+
 }
 
 function reset() {
     recording = false;
-    movementTrack.clear();
+    movementTrack = [];
+    $.ajax({
+        url: url + "/reset",
+        dataType: 'JSON',
+        type: 'POST',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(movementTrack),
+        success: function (result) {
+            console.log(result);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
 }
 function startRecording() {
     recording = true;
 }
+function getMouseMoment() {
+    $.ajax({
+        url: url + "/moments",
+        type: "GET",
+        success: function (result) {
+            console.log(result);
+            playAction(result);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}
+function playAction(mouseCordinates) {
 
-function playAction() {
     recording = false;
     let index = 0;
     let loop = setInterval(moveItem, 100);
     function moveItem() {
-        theThing.style.left = movementTrack[index].x + "px";
-        theThing.style.top = movementTrack[index].y + "px";
+        theThing.style.left = mouseCordinates[index].x + "px";
+        theThing.style.top = mouseCordinates[index].y + "px";
         index++;
         console.log("Step Taken");
-        if (index >= movementTrack.length)
+        if (index >= mouseCordinates.length)
             clearInterval(loop);
     }
 }
